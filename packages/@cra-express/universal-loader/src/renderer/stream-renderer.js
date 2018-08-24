@@ -7,7 +7,7 @@ export default function streamRenderer(req, res, reactEl, htmlData, options) {
   stream.pipe(res, { end: false })
   stream.on('end', () => {
     if (options.onEndReplace) {
-      segments[1] = options.onEndReplace(segments[1])
+      segments[1] = options.onEndReplace(segments[1], req)
     }
     res.write(segments[1]);
     res.end();
